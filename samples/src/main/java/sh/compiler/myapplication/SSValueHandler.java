@@ -1,14 +1,17 @@
-package sh.compiler.springslider;
+package sh.compiler.myapplication;
 
 import android.os.Handler;
+import android.support.annotation.Nullable;
 
 /**
  * Created by pontus on 2016-03-31.
  */
 public class SSValueHandler {
 
+    Object tag;
+
     interface ValueHandlerListener {
-        void onValueChanged(int value);
+        void onValueChanged(@Nullable Object tag, int value);
     }
 
     private int mCurrentValue = 0;
@@ -23,6 +26,10 @@ public class SSValueHandler {
         this.mValueHandlerListener = valueHandlerListener;
     }
 
+    public void setTag(Object tag) {
+        this.tag = tag;
+    }
+
     public void startValueChange(int currentValue) {
         mCurrentValue = currentValue;
         if (mHandler == null) {
@@ -34,7 +41,7 @@ public class SSValueHandler {
     private void changeValue(int value) {
         mCurrentValue = mCurrentValue + value;
         if (mValueHandlerListener != null) {
-            mValueHandlerListener.onValueChanged(mCurrentValue);
+            mValueHandlerListener.onValueChanged(tag, mCurrentValue);
         }
     }
 

@@ -8,6 +8,8 @@
         </attr>
         <attr name="sliderColor" format="color"/>
         <attr name="sliderBackgroundColor" format="color"/>
+        <attr name="sliderMaxValue" format="integer"/>
+        <attr name="sliderMinValue" format="integer"/>
     </declare-styleable>
     
 </resources>

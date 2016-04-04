@@ -1,24 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+      android:id="@+id/llRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipChildren="true"
     android:orientation="vertical">
 
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+      <TextView
+          android:id="@+id/minOne"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/min"
+          android:layout_margin="8dp"/>
+      <TextView
+          android:id="@+id/maxOne"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/max"
+          android:layout_margin="8dp"/>
+      <TextView
+          android:id="@+id/currentOne"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/current"
+          android:layout_margin="8dp"/>
+   </LinearLayout>
    <sh.compiler.springslider.SpringSlider
+       android:id="@+id/sliderOne"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:background="@color/colorAccent"
        app:sliderBackgroundColor="#554499"
-       app:sliderColor="#998811"/>
+       app:sliderColor="#998811"
+       app:sliderMinValue="-100"
+       app:sliderMaxValue="100"/>
    <View
        android:layout_width="match_parent"
        android:layout_height="50dp"
-      android:background="#1199FF"
+       android:background="#1199FF"
       />
    <sh.compiler.springslider.SpringSlider
+       android:id="@+id/sliderTwo"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:background="@color/colorAccent"
@@ -36,6 +62,6 @@
        android:layout_height="match_parent"
        android:background="@color/colorAccent"
        app:sliderBackgroundColor="#AA4499"
-       app:sliderColor="#FF8811"
+       app:sliderColor="@android:color/background_light"
        app:sliderPosition="right"/>
 </LinearLayout>
