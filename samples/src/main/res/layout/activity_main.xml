@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipChildren="true"
+    android:orientation="vertical">
+
+   <sh.compiler.springslider.SpringSlider
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/colorAccent"
+       app:sliderBackgroundColor="#554499"
+       app:sliderColor="#998811"/>
+   <View
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+      android:background="#1199FF"
+      />
+   <sh.compiler.springslider.SpringSlider
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/colorAccent"
+       app:sliderBackgroundColor="#AA4499"
+       app:sliderColor="#FF8811"
+       app:sliderPosition="left"/>
+   <View
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:background="#1199FF"
+       />
+   <sh.compiler.springslider.SpringSlider
+       android:id="@+id/sliderThree"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/colorAccent"
+       app:sliderBackgroundColor="#AA4499"
+       app:sliderColor="#FF8811"
+       app:sliderPosition="right"/>
+</LinearLayout>

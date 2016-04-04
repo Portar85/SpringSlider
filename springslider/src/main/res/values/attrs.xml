@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SpringSlider">
+        <attr name="sliderPosition" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="center" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+        <attr name="sliderColor" format="color"/>
+        <attr name="sliderBackgroundColor" format="color"/>
+    </declare-styleable>
+    
+</resources>
