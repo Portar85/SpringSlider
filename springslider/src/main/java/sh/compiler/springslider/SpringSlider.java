@@ -250,9 +250,19 @@ public class SpringSlider extends View implements View.OnTouchListener {
                 springSliderComponent.getSliderBackgroundPaint()
         );
         if (mIsTouchingView) {
-            canvas.drawCircle(springSliderComponent.getSliderPosX(), canvas.getHeight()/2, springSliderComponent.getSliderFocusCircleSize(), springSliderComponent.getSliderFocusCirclePaint());
+            canvas.drawCircle(
+                    springSliderComponent.getSliderPosX(),
+                    canvas.getHeight()/2,
+                    springSliderComponent.getSliderFocusCircleSize(),
+                    springSliderComponent.getSliderFocusCirclePaint()
+            );
         }
-        canvas.drawCircle(springSliderComponent.getSliderPosX(), canvas.getHeight()/2, canvas.getHeight()/6, springSliderComponent.getSliderPaint());
+        canvas.drawCircle(
+                springSliderComponent.getSliderPosX(),
+                canvas.getHeight()/2,
+                canvas.getHeight()/6,
+                springSliderComponent.getSliderPaint()
+        );
     }
 
     /**
