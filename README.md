@@ -1,7 +1,8 @@
 # SpringSlider
-
 A Material design-springslider component for Android.
 Can be used for scrubbing audio tracks etc.
+![](springslider.gif)
+
 
 ### Usage
 
