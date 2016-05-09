@@ -1,4 +1,4 @@
-package sh.compiler.myapplication;
+package sh.compiler.springslidersample;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

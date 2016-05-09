@@ -17,18 +17,18 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
 /**
- * Created by pontus on 2016-03-29.
+ * Created by Pontus Backlund on 2016-03-29.
  */
 public class SpringSlider extends View implements View.OnTouchListener {
     private static final String TAG = SpringSlider.class.toString();
 
+    private static final int SLIDER_MARGIN = 40;
+    private static int ANIMATION_TIME = 200;
+
     public static final int LEFT = 0;
     public static final int MIDDLE = 1;
+
     public static final int RIGHT = 2;
-
-    private static final int SLIDER_MARGIN = 40;
-
-    private static int ANIMATION_TIME = 200;
     protected final SpringSliderComponent springSliderComponent = new SpringSliderComponent();
 
     protected GestureDetector mGestureDetector;
@@ -101,14 +101,27 @@ public class SpringSlider extends View implements View.OnTouchListener {
         springSliderComponent.getSliderFocusCirclePaint().setColor(springSliderComponent.getSliderFocusCircleColor());
     }
 
+    /**
+     * Get minimum value of slider (set value)
+     * @return int
+     */
     public int getMinValue() {
         return springSliderComponent.getSliderMinValue();
     }
 
+    /**
+     * Get maximum value of slider (set value)
+     * @return int
+     */
     public int getMaxValue() {
         return springSliderComponent.getSliderMaxValue();
     }
 
+    /**
+     * Sets slider colors from xml resource, defaults to theme colors
+     * @param context
+     * @param a
+     */
     protected void defineSliderColors(Context context, TypedArray a) {
         if (a.hasValue(R.styleable.SpringSlider_sliderColor)) {
             springSliderComponent.setSliderColor(a.getColor(R.styleable.SpringSlider_sliderColor, Color.BLUE));
@@ -136,8 +149,8 @@ public class SpringSlider extends View implements View.OnTouchListener {
 
     /**
      *
-     * * Note that this does not return the current value
-     *   but rather the position as an x-coordinate
+     * Note that this does not return the current value
+     * but rather the position as an x-coordinate
      *
      * @return returns the current x value for the slider in px
      */
@@ -242,18 +255,22 @@ public class SpringSlider extends View implements View.OnTouchListener {
         canvas.drawCircle(springSliderComponent.getSliderPosX(), canvas.getHeight()/2, canvas.getHeight()/6, springSliderComponent.getSliderPaint());
     }
 
-    private int getConvertedValue(int currentX) {
-        int pixelRange;
-        if (_canvasWidth - SLIDER_MARGIN == springSliderComponent.getSliderPosXInitial()) {
-            pixelRange = _canvasWidth;
-        } else {
-            pixelRange = _canvasWidth - SLIDER_MARGIN - (int) springSliderComponent.getSliderPosXInitial();
-        }
-        int wantedRange = springSliderComponent.getSliderMaxValue() - springSliderComponent.getSliderMinValue();
-        if (pixelRange == 0) {
+    /**
+     * Converts sliders current position to defined range-value
+     * @return new value as int
+     */
+    private int getConvertedValue() {
+        int pixelsMax = _canvasWidth - SLIDER_MARGIN;
+        int pixelsMin = SLIDER_MARGIN;
+        int pixelRange = pixelsMax - pixelsMin;
+        if (pixelRange == 0) { //sane?
             return springSliderComponent.getSliderMinValue();
         }
-        return (((currentX - (int) springSliderComponent.getSliderPosXInitial()) * wantedRange) / pixelRange) + springSliderComponent.getSliderMinValue();
+        int sliderX = (int) springSliderComponent.getSliderPosX();
+        int wantedRange = springSliderComponent.getSliderMaxValue() - springSliderComponent.getSliderMinValue();
+        int newValue = (((sliderX - pixelsMin) * wantedRange) / pixelRange) + springSliderComponent.getSliderMinValue();
+        Log.d(TAG, "newValue: " + newValue);
+        return newValue;
     }
 
     @Override
@@ -261,7 +278,6 @@ public class SpringSlider extends View implements View.OnTouchListener {
         boolean result = mGestureDetector.onTouchEvent(event);
         if (!result) {
             switch (event.getAction()) {
-                //moving
                 case MotionEvent.ACTION_MOVE:
                     if (event.getX() > SLIDER_MARGIN &&
                             event.getX() < _canvasWidth - SLIDER_MARGIN) {
@@ -269,7 +285,7 @@ public class SpringSlider extends View implements View.OnTouchListener {
                     }
                     mIsTouchingView = true;
                     if (eventListener != null) {
-                        int currentVal = getConvertedValue((int) springSliderComponent.getSliderPosX());
+                        int currentVal = getConvertedValue();
                         eventListener.onSliderValueChanged(this, currentVal);
                     }
                     this.invalidate();
@@ -288,7 +304,10 @@ public class SpringSlider extends View implements View.OnTouchListener {
         return result;
     }
 
-    private void beginSliderAnimation() {
+    /**
+     * Animates slider to startpoint when released
+     */
+    protected void beginSliderAnimation() {
         if (springSliderComponent.getSliderAnimator() != null && springSliderComponent.getSliderAnimator().isRunning()) {
             springSliderComponent.getSliderAnimator().cancel();
         }
@@ -304,8 +323,7 @@ public class SpringSlider extends View implements View.OnTouchListener {
         });
         springSliderComponent.getSliderAnimator().addListener(new Animator.AnimatorListener() {
             @Override
-            public void onAnimationStart(Animator animation) {
-            }
+            public void onAnimationStart(Animator animation) {}
             @Override
             public void onAnimationEnd(Animator animation) {}
             @Override
@@ -321,7 +339,10 @@ public class SpringSlider extends View implements View.OnTouchListener {
         springSliderComponent.getSliderAnimator().start();
     }
 
-    private void beginShrinkFocusAnimation() {
+    /**
+     * Shrinks focus circle with a time of ANIMATION_TIME in ms
+     */
+    protected void beginShrinkFocusAnimation() {
         if (mFocusCircleEnlargeAnimator.isRunning()) {
             mFocusCircleEnlargeAnimator.cancel();
         }
@@ -352,7 +373,10 @@ public class SpringSlider extends View implements View.OnTouchListener {
         });
     }
 
-    private void beginFocusCircleEnlargeAnimation() {
+    /**
+     * Enlarges focus circle with a time of ANIMATION_TIME in ms
+     */
+    protected void beginFocusCircleEnlargeAnimation() {
         mFocusCircleEnlargeAnimator = ValueAnimator.ofFloat(springSliderComponent.getSliderFocusCircleSize(), springSliderComponent.getSliderFocusCircleFullSize());
         mFocusCircleEnlargeAnimator.setDuration(ANIMATION_TIME);
         mFocusCircleEnlargeAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

@@ -41,27 +41,29 @@
    <View
        android:layout_width="match_parent"
        android:layout_height="50dp"
-       android:background="#1199FF"
       />
    <sh.compiler.springslider.SpringSlider
        android:id="@+id/sliderTwo"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:background="@color/colorAccent"
+       android:background="#FFDDFF"
        app:sliderBackgroundColor="#AA4499"
        app:sliderColor="#FF8811"
        app:sliderPosition="left"/>
    <View
        android:layout_width="match_parent"
        android:layout_height="50dp"
-       android:background="#1199FF"
        />
    <sh.compiler.springslider.SpringSlider
        android:id="@+id/sliderThree"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:background="@color/colorAccent"
+       android:background="#CCFFFF"
        app:sliderBackgroundColor="#AA4499"
        app:sliderColor="@android:color/background_light"
        app:sliderPosition="right"/>
+   <View
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       />
 </LinearLayout>

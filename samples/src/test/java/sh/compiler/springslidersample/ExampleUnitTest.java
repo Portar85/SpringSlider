@@ -1,4 +1,4 @@
-package sh.compiler.myapplication;
+package sh.compiler.springslidersample;
 
 import org.junit.Test;
 

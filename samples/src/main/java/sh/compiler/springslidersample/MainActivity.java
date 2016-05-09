@@ -1,9 +1,8 @@
-package sh.compiler.myapplication;
+package sh.compiler.springslidersample;
 
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -26,9 +25,6 @@ public class MainActivity extends AppCompatActivity implements SpringSliderEvent
 
 
     SSValueHandler valueHandlerOne;
-    SSValueHandler valueHandlerTwo;
-    SSValueHandler valueHandlerThree;
-    SSValueHandler valueHandlerFour;
 
     @SuppressWarnings("ConstantConditions")
     @Override
@@ -38,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements SpringSliderEvent
         LinearLayout llRoot = (LinearLayout) findViewById(R.id.llRoot);
 
         sliderOne = (SpringSlider) findViewById(R.id.sliderOne);
+        sliderOne.setSliderMinValue(-10);
+        sliderOne.setSliderMaxValue(10);
         textViewMinOne = (TextView) findViewById(R.id.minOne);
         textViewMaxOne = (TextView) findViewById(R.id.maxOne);
         textViewCurrentOne = (TextView) findViewById(R.id.currentOne);
@@ -58,17 +56,10 @@ public class MainActivity extends AppCompatActivity implements SpringSliderEvent
         llRoot.addView(sliderFour);
 
         valueHandlerOne = new SSValueHandler();
+        valueHandlerOne.setMaxValue(100);
+        valueHandlerOne.setMinValue(-100);
         valueHandlerOne.setValueListener(this);
         valueHandlerOne.setTag(sliderOne);
-        valueHandlerTwo = new SSValueHandler();
-        valueHandlerTwo.setValueListener(this);
-        valueHandlerTwo.setTag(sliderTwo);
-        valueHandlerThree = new SSValueHandler();
-        valueHandlerThree.setValueListener(this);
-        valueHandlerThree.setTag(valueHandlerThree);
-        valueHandlerFour = new SSValueHandler();
-        valueHandlerFour.setValueListener(this);
-        valueHandlerFour.setTag(valueHandlerFour);
 
     }
 
@@ -77,15 +68,6 @@ public class MainActivity extends AppCompatActivity implements SpringSliderEvent
         switch (v.getId()) {
             case R.id.sliderOne:
                 valueHandlerOne.stopValueChange();
-                break;
-            case R.id.sliderTwo:
-                valueHandlerTwo.stopValueChange();
-                break;
-            case R.id.sliderThree:
-                valueHandlerThree.stopValueChange();
-                break;
-            case R.integer.id_programmatic:
-                valueHandlerFour.stopValueChange();
                 break;
         }
     }
@@ -96,15 +78,6 @@ public class MainActivity extends AppCompatActivity implements SpringSliderEvent
         switch (v.getId()) {
             case R.id.sliderOne:
                 valueHandlerOne.startValueChange(0);
-                break;
-            case R.id.sliderTwo:
-                valueHandlerTwo.startValueChange(0);
-                break;
-            case R.id.sliderThree:
-                valueHandlerThree.startValueChange(0);
-                break;
-            case R.integer.id_programmatic:
-                valueHandlerFour.startValueChange(0);
                 break;
         }
     }
