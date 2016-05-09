@@ -20,11 +20,11 @@ Add xmlns:app namespace to your layout (xmlns:app="http://schemas.android.com/ap
 ```
 Attributes:
 ```
-sliderPosition _enum_- Starting position of slider, defaults to center
-sliderColor _color_ - Slider-head color and focus circle color
-sliderBackgroundColor _color_ - Slider-bar color
-sliderMinValue _integer_ - Sliders minimum value (left)
-sliderMaxValue _integer_ - Sliders max value (right)
+sliderPosition (enum) - Starting position of slider, defaults to center
+sliderColor (color) - Slider-head color and focus circle color
+sliderBackgroundColor (color) - Slider-bar color
+sliderMinValue (integer) - Sliders minimum value (left)
+sliderMaxValue (integer) - Sliders max value (right)
 
 ```
 
