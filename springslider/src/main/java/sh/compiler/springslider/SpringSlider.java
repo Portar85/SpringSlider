@@ -279,7 +279,6 @@ public class SpringSlider extends View implements View.OnTouchListener {
         int sliderX = (int) springSliderComponent.getSliderPosX();
         int wantedRange = springSliderComponent.getSliderMaxValue() - springSliderComponent.getSliderMinValue();
         int newValue = (((sliderX - pixelsMin) * wantedRange) / pixelRange) + springSliderComponent.getSliderMinValue();
-        Log.d(TAG, "newValue: " + newValue);
         return newValue;
     }
 
