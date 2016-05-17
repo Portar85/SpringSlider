@@ -27,8 +27,8 @@ public class SpringSlider extends View implements View.OnTouchListener {
 
     public static final int LEFT = 0;
     public static final int MIDDLE = 1;
-
     public static final int RIGHT = 2;
+    
     protected final SpringSliderComponent springSliderComponent = new SpringSliderComponent();
 
     protected GestureDetector mGestureDetector;
